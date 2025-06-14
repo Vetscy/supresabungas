@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Feliz Aniversario Kitty</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="kitty-container">
+        <img src="icons/hello-kitty-logo-png_seeklogo-310127.png" alt="Hello Kitty Logo" class="kitty-logo">
+        <h1>Feliz Aniversário, Amor!</h1>
+        <p class="message">Com todo meu carinho e amor, desejo um dia especial para você! ❤️</p>
+        
+        <div class="envelope-container">
+            <div class="envelope" onclick="abrirCarta(this)">
+                <div class="envelope-frente">
+                    <img src="icons/envelope.svg" alt="Carta" class="envelope-icone">
+                </div>
+                <div class="envelope-tras">
+                    <div class="papel">
+                        <img src="icons/PH-KITTY.jpg" alt="Foto especial" class="carta-imagem">
+                        <div class="carta-texto">
+                            <p>Hello Kitty,</p>
+                            <p>Se você está lendo isso significa que eu finalmente consegui terminar o site (Com ajudas de um ser maraVilhoso) e pude te entregar este Mini presente, Sei que você gosta de hello kitty então aqui esta algumas personalizações, Esse presente não é o ultimo ainda então não se preocupe e isso não é bem um presente em si, ta mais para uma cartinha de feliz aniversario esforçado.</p>
+                            <p>Sei que tivemos uma historia até que complicada de se narrar por que meio que eu não fui inteligente quando a gente se conheceu e acabei indo por um caminho até que errado demais, mas agora eu finalmente tive o meu tão esperado choque de realidade e ja descobri quem quero elvar pra vida, aquele dia na festa eu senti aquela conexão GIGANTESCA que eu acho que você sentiu tambem e eu tive certeza que fomos feito um para o outro, agora eu pude finalmente estar presente em um aniversario seu e espero poder participar de muitos outros, isso foi basico pórem dia 21 ta chegando e eu estou MUITO ansioso para te ver, só queria desejar um feliz aniversario, Lara jean ❤️</p>
+                            <p class="assinatura">~ Peter kavinsky</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="bg-music" src="musica/Fitz And The Tantrums - Out Of My League [Official Music Video] - Fitz and the Tantrums.mp3" loop autoplay muted></audio>
+    <script>
+        function playMusic() {
+            var audio = document.getElementById('bg-music');
+            audio.muted = false;
+            audio.volume = 0.3;
+            audio.play().catch(function(error) {
+                console.log("Playback prevented. Click anywhere to start music.");
+            });
+        }
+
+        function abrirCarta(envelope) {
+            envelope.classList.toggle('aberto');
+        }
+
+        window.addEventListener('DOMContentLoaded', playMusic);
+        document.addEventListener('click', playMusic);
+        document.addEventListener('touchstart', playMusic);
+        document.addEventListener('keydown', playMusic);
+    </script>
+    <script src="bg-move.js"></script>
+    <script src="kitty-falling.js"></script>
+</body>
+</html>

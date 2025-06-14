@@ -1,0 +1,403 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(120deg, #ffb6e6 0%, #ffe6fa 100%);
+    animation: bg-pulse 3s infinite alternate;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+}
+
+@keyframes bg-pulse {
+    from { background: linear-gradient(120deg, #ffb6e6 0%, #ffe6fa 100%); }
+    to { background: linear-gradient(120deg, #ffc8ee 0%, #fff0fc 100%); }
+}
+
+.kitty-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding: 20px 10px;
+    box-sizing: border-box;
+    pointer-events: none;
+    animation: container-float 3s ease-in-out infinite;
+}
+
+@keyframes container-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.kitty-falling {
+    position: fixed;
+    top: -80px;
+    width: 60px;
+    height: 60px;
+    pointer-events: none;
+    z-index: 1;
+    user-select: none;
+    filter: drop-shadow(0 4px 16px #ffb6e6);
+    animation: kitty-fall linear forwards;
+}
+
+@keyframes kitty-fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0.7;
+    }
+}
+
+h1 {
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    color: #ff1493;
+    font-size: 2.5rem;
+    text-shadow: 3px 3px 10px #ff69b4;
+    z-index: 2;
+    position: relative;
+    animation: text-glow 2s ease-in-out infinite alternate;
+    text-align: center;
+    margin: 10px 0;
+}
+
+@keyframes text-glow {
+    from { text-shadow: 3px 3px 10px #ff69b4; }
+    to { text-shadow: 3px 3px 20px #ff1493; }
+}
+
+.kitty-logo {
+    width: 100px;
+    margin-bottom: 15px;
+    display: block;
+    filter: drop-shadow(0 4px 12px #ff69b4);
+    animation: logo-pulse 2s ease-in-out infinite;
+}
+
+@keyframes logo-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.message {
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    color: #ff1493;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-top: 20px;
+    text-shadow: 2px 2px 6px #ff69b4;
+    animation: message-float 3s ease-in-out infinite;
+    z-index: 2;
+    position: relative;
+}
+
+@keyframes message-float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-5px) scale(1.02); }
+}
+
+.heart {
+    position: fixed;
+    font-size: 20px;
+    color: #ff69b4;
+    pointer-events: none;
+    animation: float-heart 4s ease-in-out infinite;
+    opacity: 0.6;
+}
+
+@keyframes float-heart {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-100px) rotate(180deg); }
+    100% { transform: translateY(-200px) rotate(360deg); opacity: 0; }
+}
+
+/* Media Queries para dispositivos móveis */
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+        margin: 10px;
+    }
+
+    .message {
+        font-size: 1.1rem;
+        margin: 10px;
+        padding: 0 10px;
+    }
+
+    .kitty-logo {
+        width: 90px;
+    }
+
+    .kitty-falling {
+        width: 35px;
+        height: 35px;
+    }
+
+    .heart {
+        font-size: 14px;
+    }
+
+    .carta {
+        min-height: 350px;
+    }
+
+    .carta-texto {
+    font-size: 0.9rem;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+}
+
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .message {
+        font-size: 0.9rem;
+    }
+
+    .kitty-logo {
+        width: 80px;
+    }
+
+    .kitty-falling {
+        width: 25px;
+        height: 25px;
+    }
+
+    .carta {
+        min-height: 300px;
+    }
+
+    .carta-texto {
+        font-size: 0.8rem;
+    }
+}
+
+.envelope-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    perspective: 1000px;
+    pointer-events: auto;
+}
+
+.envelope {
+    width: 100%;
+    min-height: 400px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+    cursor: pointer;
+}
+
+.envelope.aberto {
+    transform: rotateX(180deg);
+}
+
+.envelope-frente,
+.envelope-tras {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(255, 182, 193, 0.5);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background: linear-gradient(135deg, #fff5f6, #ffebee);
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.carta-frente {
+    background: linear-gradient(45deg, #ffb6c1, #ffc0cb);
+    font-size: 24px;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    flex-direction: column;
+    gap: 20px;
+}
+
+.carta-icone {
+    width: 80px;
+    height: 80px;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+    transition: transform 0.3s ease;
+    animation: float-icon 3s ease-in-out infinite;
+}
+
+@keyframes float-icon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.carta:hover .carta-icone {
+    transform: scale(1.1);
+}
+
+.carta-tras {
+    transform: rotateY(180deg);
+    overflow-y: auto;
+    max-height: 80vh;
+}
+
+.carta-conteudo {
+    max-width: 100%;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.envelope-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    perspective: 1000px;
+    pointer-events: auto;
+}
+
+.envelope {
+    width: 100%;
+    min-height: 400px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+    cursor: pointer;
+}
+
+.envelope.aberto {
+    transform: rotateY(180deg);
+}
+
+.envelope-frente,
+.envelope-tras {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(255, 182, 193, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.envelope-frente {
+    background: transparent;
+}
+
+.envelope-icone {
+    width: 200px;
+    height: 150px;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+    transition: transform 0.3s ease;
+    animation: float-envelope 3s ease-in-out infinite;
+}
+
+@keyframes float-envelope {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.envelope:hover .envelope-icone {
+    transform: scale(1.05);
+}
+
+.envelope-tras {
+    transform: rotateX(180deg);
+    background: transparent;
+}
+
+.papel {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #fff5f6, #ffebee);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+    max-height: calc(100% - 40px);
+}
+
+.envelope.aberto .papel {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.carta-imagem {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+}
+
+.carta-texto {
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    color: #333;
+    line-height: 1.6;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.carta-texto p {
+    margin: 0 0 15px;
+    text-align: justify;
+    padding-right: 10px;
+}
+
+.assinatura {
+    font-style: italic;
+    text-align: right;
+    color: #ff1493;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .envelope {
+        height: 350px;
+    }
+
+    .envelope-icone {
+        width: 150px;
+        height: 112.5px;
+    }
+
+    .papel {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .envelope {
+        height: 300px;
+    }
+
+    .envelope-icone {
+        width: 120px;
+        height: 90px;
+    }
+
+    .papel {
+        padding: 15px;
+    }
+
+    .carta-texto {
+        font-size: 14px;
+    }
+}
