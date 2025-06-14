@@ -194,7 +194,7 @@ h1 {
 }
 
 .envelope.aberto {
-    transform: rotateX(180deg);
+    transform: rotateY(-180deg);
 }
 
 .envelope-frente,
@@ -310,7 +310,7 @@ h1 {
 }
 
 .envelope-tras {
-    transform: rotateX(180deg);
+    transform: rotateY(-180deg);
     background: transparent;
 }
 
